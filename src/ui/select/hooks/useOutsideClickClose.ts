@@ -21,7 +21,6 @@ export const useOutsideClickClose = ({
 			if (target instanceof Node && !rootRef.current?.contains(target)) {
 				onClose?.();
 				onChange?.(false);
-				console.log('click outside');
 			}
 		};
 
