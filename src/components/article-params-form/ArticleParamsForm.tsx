@@ -13,7 +13,7 @@ import {
 	fontFamilyOptions,
 	fontSizeOptions,
 } from 'src/constants/articleProps';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Text } from 'src/ui/text';
 import { Select } from 'src/ui/select';
 import { RadioGroup } from 'src/ui/radio-group/RadioGroup';
@@ -26,8 +26,9 @@ type Props = {
 };
 
 export const ArticleParamsForm = (props: Props) => {
+	const { updateOptionStyle, optionStyle } = props;
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const [options, setOptions] = useState({ ...props.optionStyle });
+	const [options, setOptions] = useState({ ...optionStyle });
 
 	const ref = useRef<HTMLDivElement>(null);
 
@@ -56,13 +57,13 @@ export const ArticleParamsForm = (props: Props) => {
 	}
 
 	function handleReset() {
-		props.updateOptionStyle(defaultArticleState);
+		updateOptionStyle(defaultArticleState);
 		setOptions(defaultArticleState);
 	}
 
 	function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		props.updateOptionStyle(options);
+		updateOptionStyle(options);
 	}
 
 	useOutsideClickClose({
